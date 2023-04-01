@@ -1,3 +1,4 @@
+/* Formato de la página */
 body{
     background-image: url(../img/fondo1.jpg);
     background-size: cover;
@@ -6,7 +7,7 @@ body{
   height: 100vh;
 }
 
-
+/* Formato de la etiqueta H1 */
 h1{
   color:rgb(241, 78, 19);
   font-size: 40px;
@@ -16,7 +17,7 @@ h1{
   animation: aparece 5s 
 }
 
-
+/* Formato de la etiqueta H2 */
 h2{
   color:rgb(38, 168, 40);
   font-size: 25px;
@@ -27,7 +28,7 @@ h2{
 }
 
 
-/* Anaimación Titulo h1*/
+/* Anaimación Titulo h1 y h2*/
 @keyframes aparece{
   0%{opacity:0;}
   50%{opacity:0.5;}
@@ -35,6 +36,7 @@ h2{
   100%{opacity:1;}
 }
 
+/* Formato de la forma Boton */
 .button{
   background-color: white;
   color: black;
@@ -45,6 +47,7 @@ h2{
   transition-duration: 0.4s;
 }
 
+/* Acción de la forma boton */
 button:hover{
   font-size: 1.5rem;
   background-color: palevioletred;

@@ -1,3 +1,4 @@
+/* Declaración de variables */
 const precioMaquillaje = 220
 const precioDesMaquillante = 220
 const precioHidratante = 220
@@ -11,10 +12,11 @@ let total = 0
 let contadorProductos = 0
 concatenar = ""
 
-
+/* Función para comprar */
 const comprar = (deseaComprar) => {
 
     if (deseaComprar) {
+        /* Seleccionar categoría */
         let categoria = Number(prompt(` Seleccione la categoría que desea comprar \n 1. Rostro \n 2. Labios \n 3. Ojos`))
         seleccion(categoria)
     } else {
@@ -23,6 +25,7 @@ const comprar = (deseaComprar) => {
 
  }
 
+ /* Función para seleccionar el producto de acuerdo a la categoria */
 const seleccion = (categoria) => { 
         switch (categoria) {
             case 1:
@@ -47,7 +50,7 @@ const seleccion = (categoria) => {
        
 } 
 
-
+ /* Función para confirmar la compra de la Categoría Cosmeticos Rostro */
 const comprarRostro = (producto) => {
     switch (producto) {
         case 1:
@@ -77,6 +80,7 @@ const comprarRostro = (producto) => {
     
 } 
 
+ /* Función para confirmar la compra de la Categoría Cometicos Labios */
 const comprarLabios = (producto1) => {
     switch (producto1) {
         case 1:
@@ -105,6 +109,7 @@ const comprarLabios = (producto1) => {
         
 } 
 
+ /* Función para confirmar la compra de la Categoría Cosmeticos Ojos */
 const comprarOjos = (producto2) => {
     switch (producto2) {
         case 1:        
@@ -132,13 +137,14 @@ const comprarOjos = (producto2) => {
     }        
                 
 } 
-  
+ 
+ /* Función para agregar la compra */
 const agregar = (respuesta, precio, nombreProducto) => { 
     if (respuesta) {
         total = total + precio
         contadorProductos = contadorProductos+ 1
         concatenar = concatenar + "\n" + " El  Producto No. "+ contadorProductos + " es: "  + nombreProducto + " y tiene un precio de " + precio+ " pesos"
-        console.log(`Producto: ${nombreProducto} Precio: ${precio}`)
+        console.log(`Producto ${contadorProductos}: ${nombreProducto} Precio: ${precio}`)
         console.log(`El monto total de su compra es: ${total} `)
         seguirComprando = confirm("¿Desea seguir comprando?")
     } else {
@@ -147,7 +153,7 @@ const agregar = (respuesta, precio, nombreProducto) => {
     if (seguirComprando) {
             comprar(seguirComprando)
     } else {
-        alert(concatenar)
+        alert("Productos comprados:" + contadorProductos +"\n" + concatenar)
         alert(`El monto total de su compra es: ${total} \n ¡Gracias por tu visita te esperamos muy pronto de nuevo!`)
         console.log(`El monto total de su compra es: ${total} `)
        
@@ -155,13 +161,10 @@ const agregar = (respuesta, precio, nombreProducto) => {
 }
 
 
-
-
-
-
+ /* Función de inicio*/
 function iniciar() {
     while (true) {
-        var comprador = prompt("Ingrese su nombre")
+        var comprador = prompt("Ingrese su nombre").toUpperCase()
             if (comprador != "" && comprador != null) {
                 break;
     
@@ -170,7 +173,7 @@ function iniciar() {
                 continue;
             }
     }
-    
+   
     let deseaComprar = confirm(`Bienvenido ${comprador} ¿Desea comprar algún producto?`)
     comprar(deseaComprar)
     
