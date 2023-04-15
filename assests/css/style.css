@@ -37,18 +37,18 @@ h2{
 }
 
 /* Formato de la forma Boton */
-.button{
+.buttom{
   background-color: white;
   color: black;
   border: 2px solid palevioletred;
   font-size: 1rem;
-  margin-left: 730px;
+  margin-left: 690px;
   margin-top: 80px;
   transition-duration: 0.4s;
 }
 
 /* Acción de la forma boton */
-button:hover{
+.buttom.buttom:hover{
   font-size: 1.5rem;
   background-color: palevioletred;
   color: white;
