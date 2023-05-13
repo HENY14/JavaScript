@@ -1,3 +1,9 @@
+//Declaración de variable
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let total = 0
+const cantidadCarrito = document.getElementById("cantCarrito");
+
+
 /* Constructor de productos */
 class Producto {
     constructor(id, nombre, precio, descripcion, categoria, stock) {
@@ -7,162 +13,117 @@ class Producto {
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.stock = stock;
-        }
+    }
 }
-//Definición de Productos
-const maquillaje = new Producto("R01","Maquillaje", 205, "Base de Maquillaje, cobertura de larga duración", "Rostro", 25);
-const desmaquillante = new Producto("R02","Desmaquillante", 160, "Removedor de maquillaje bifásico para ojos y rostro", "Rostro", 15);
-const hidratante = new Producto("R03","Hidratante", 258, "Hidratante facial con ácido hialurónico", "Rostro", 18);
-const rubor = new Producto("R04","Rubor", 137, " Rubor en polvo compacto de textura suave", "Rostro", 4);
-const corrector = new Producto("R05","Corrector", 96, " Corrector de cobertura alta, textura cremosa", "Rostro", 8);
-const fijador = new Producto("R06","Fijador", 219, " Fijador de Maquillaje Matificante", "Rostro", 3);
-const iluminador = new Producto("R07","Iluminador", 55, "Iluminador compacto de fácil aplicación y difuminado", "Rostro", 3);
-const brochas = new Producto("R08","Set de brochas", 400, "Set de 14 brochas para ojos y cara.", "Rostro", 5);
+// Definición de Productos
+const maquillaje = new Producto("R01", "Maquillaje", 205, "Base de Maquillaje, cobertura de larga duración", "Rostro", 25);
+const desmaquillante = new Producto("R02", "Desmaquillante", 160, "Removedor de maquillaje bifásico para ojos y rostro", "Rostro", 15);
+const hidratante = new Producto("R03", "Hidratante", 258, "Hidratante facial con ácido hialurónico", "Rostro", 18);
+const rubor = new Producto("R04", "Rubor", 137, " Rubor en polvo compacto de textura suave", "Rostro", 4);
+const corrector = new Producto("R05", "Corrector", 96, " Corrector de cobertura alta, textura cremosa", "Rostro", 8);
+const fijador = new Producto("R06", "Fijador", 219, " Fijador de Maquillaje Matificante", "Rostro", 3);
+const iluminador = new Producto("R07", "Iluminador", 55, "Iluminador compacto de fácil aplicación y difuminado", "Rostro", 3);
+const brochas = new Producto("R08", "Set de brochas", 400, "Set de 14 brochas para ojos y cara.", "Rostro", 5);
 const labial = new Producto("L01", "Labial", 55, "Labial en barra con fórmula cremosa y acabado mate", "Labios", 10);
-const brilloLabial = new Producto("L02","Brillo Labial", 75, "Brillo de labios con color", "Labios", 2);
-const delineador = new Producto("L03","Delineador Labial", 22, "Delineador Labial cremoso con un acabado de cobertura total", "Labios", 10);
-const humectante = new Producto("L04","Humectante Labial", 30, "Labial orgánico con  bálsamo de cacao", "Labios", 5);
-const sombras = new Producto("O01","Set de sombras", 238, "Paleta de sombras, con 18 tonos neutros mezclables en acabados mate", "Ojos", 8);
-const mascaraPestañas = new Producto("O02","Mascara para pestañas", 169, "Máscara para pestañas, resistente al agua, máximo volumen ", "Ojos", 15);
-const delineadorOjos = new Producto("O03","Delineador Ojos", 120, "Delineador de Ojos, lápiz fino,  ", "Ojos", 15);
+const brilloLabial = new Producto("L02", "Brillo Labial", 75, "Brillo de labios con color", "Labios", 2);
+const delineador = new Producto("L03", "Delineador Labial", 22, "Delineador Labial cremoso con un acabado de cobertura total", "Labios", 10);
+const humectante = new Producto("L04", "Humectante Labial", 30, "Labial orgánico con  bálsamo de cacao", "Labios", 5);
+const sombras = new Producto("O01", "Set de sombras", 238, "Paleta de sombras, con 18 tonos neutros mezclables en acabados mate", "Ojos", 8);
+const mascaraPestañas = new Producto("O02", "Mascara para pestañas", 169, "Máscara para pestañas, resistente al agua, máximo volumen ", "Ojos", 15);
+const delineadorOjos = new Producto("O03", "Delineador Ojos", 120, "Delineador de Ojos, lápiz fino,  ", "Ojos", 15);
 
 /*Array de productos*/
 const productos = [maquillaje, desmaquillante, hidratante, rubor, corrector, fijador, iluminador, brochas, labial, brilloLabial, delineador, humectante, sombras, mascaraPestañas, delineadorOjos];
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-let total = 0
 
-
-//Ver Carrito de compras
-const verCarrito = document.getElementById("img-carrito")
-verCarrito.addEventListener("click", () => {
-    desplegarCarrito()
-}     
-)
-
-
-//Agregar Carrito
-const agregarCarrito = (ObjetoProd) => {
-    carrito.push(ObjetoProd)
-    savelocal()
- 
-}
-
-//Desplegar Elementso del carrito
-const desplegarCarrito = () =>{
-const contenedorCarrito = document.getElementById("contenedorCarrito")
-    contenedorCarrito.innerHTML =" "
-    contenedorCarrito.style.display = "contents"
-    const carritoHeader = document.createElement("div");
-    carritoHeader.innerHTML = `<h3>Carrito de compras</h3>`
-    contenedorCarrito.appendChild(carritoHeader)
-     //Botón cerrar carrito
-    const carritoCerrar = document.createElement("button")
-    carritoCerrar.className = "btn-cierre"
-    carritoCerrar.innerText = "Cerrar Carrito";
-    carritoCerrar.addEventListener("click", () => {
-        contenedorCarrito.style.display ="none"
+// Filtros
+const btnCategorias = document.querySelectorAll(".btn-category-prod")
+btnCategorias.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+        if (e.currentTarget.id != "Todos"){
+            productosSeleccionados = productos.filter((producto) => producto.categoria.includes(e.currentTarget.id))
+            renderizarProductos(productosSeleccionados)
+        } else {
+            renderizarProductos(productos)
+        }
+               
     })
-    carritoHeader.appendChild(carritoCerrar)
-    desplegarProductos()
-}
-
-//Desplegar Productos del carrito
-const desplegarProductos = () =>{
-carrito.forEach(({id,nombre,precio,cantidad}) => {
-    const carritoProd = document.createElement("div");
-    carritoProd.className ="productosCarrito"
-    subtotal = cantidad*precio
-    carritoProd.innerHTML = `<div>
-                                <img src ="./assests/img/${id}.png" class ="card-carrito-img" alt ="${nombre}">
-                                <span class = "carrito-texto">${nombre}</span> 
-                                <span class = "carrito-texto">${cantidad} piezas</span>
-                                <span class ="carrito-texto">Precio Unitario:$${precio} pesos</span> 
-                                <span class = "carrito-texto">SubTotal:$${subtotal} pesos</span> 
-                                <button class = "btn" id ="eliminar${id}">Eliminar</button>
-                            </div>`
-    contenedorCarrito.appendChild(carritoProd)
-    const btnEliminar = document.getElementById(`eliminar${id}`)
-    btnEliminar.addEventListener("click", (e) => {
-        e.preventDefault()
-        let buscarId = carrito.find((el) => el.id)
-        carrito = carrito.filter((carritoId) => {
-            return carritoId !== buscarId;
-        })
-        desplegarCarrito()
-        savelocal()
-  })
 })
-    
-//Calcular Total
-const total = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0);
-const totalCarrito = document.createElement("div");
-totalCarrito.innerHTML = `Total a pagar: $${total} pesos`
-totalCarrito.className = "carrito-texto-total"
-    contenedorCarrito.appendChild(totalCarrito)
-    
-//Boton para Finalizar compra 
-const finalizar = document.createElement("button")
-finalizar.className = "btn-termino"
-    finalizar.innerText = "Finalizar Compra"
-    finalizar.addEventListener("click", () => { finalizarCompra() })
-    contenedorCarrito.appendChild(finalizar)
-}
 
-
-finalizarCompra=() =>{
-    const msjFinal = document.createElement("div")
-    msjFinal.className = "mensajeFinal"
-    if (carrito.length !== 0) {
-        msjFinal.innerHTML = "<p>Gracias por su compra, disfruta tus artículos y te esperamos pronto<p>"
-        contenedorCarrito.appendChild(msjFinal)
-        localStorage.clear()
-        borrarCarrito()
+// Agregar productos al Carrito
+const agregarCarrito = (id,cantidadAgregar) => {
+    contenedorCarrito.innerHTML = " "
+    // Buscar el producto que se desea agregar al carrito
+    let BuscarProd = carrito.find((el) => el.id === id)
+    if (BuscarProd) {
+         // Actualizar la cantidad si el producto está en el carrito
+        let indexProd = carrito.findIndex((el) => el.id === id)
+        carrito[indexProd].cantidad = carrito[indexProd].cantidad + cantidadAgregar
+        textoMsj = `La cantidad de ${carrito[indexProd].nombre} fue actualizada en el carrito`;
+        fondoMsj = "linear-gradient(to right, #00b09b, #96c93d)";
+        msjCarrito(textoMsj, fondoMsj)
+    } else {
+        //Si el producto no se encuentra en el carrito agregralo
+        const producto = productos.find(producto => producto.id === id)
+        producto.cantidad = cantidadAgregar
+        carrito.push(producto)
+        textoMsj = `${producto.nombre} fue agregado al carrito`;
+        fondoMsj = "linear-gradient(to right, #00b09b, #96c93d)";
+        msjCarrito(textoMsj, fondoMsj)
     }
-    contenedorCarrito.appendChild(msjFinal)
+    savelocal()
+    carritoContar()
 }
 
-//Borrar Carrito
-const borrarCarrito = () => {
-    carrito = []
+//contar la cantidad de productos
+const carritoContar = () => {
+    if (carrito.length !== 0) {
+        const cantidadProductos = carrito.reduce((acc, el) => acc + el.cantidad, 0);
+        cantidadCarrito.style.display = "inline"
+        cantidadCarrito.innerText = cantidadProductos;
+    } else {
+        cantidadCarrito.style.display = "none"
+    }
 }
 
-//local Storage
-const savelocal = () =>{
+// local Storage
+const savelocal = () => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
 
 // Renderizar Productos
-const renderizarProductos = () => {
+const renderizarProductos = (productos) => {
     const contenedorProductos = document.getElementById("contenedorProductos")
-    productos.forEach(({id, nombre, precio, descripcion, categoria, stock}) =>{
+    contenedorProductos.innerHTML = " "
+    productos.forEach((producto) =>{
         const prodCard = document.createElement("div")
         prodCard.innerHTML = `
-            <div class ="card"  id ="card${id}">
-                <img src ="./assests/img/${id}.png" class ="card-img" alt ="${nombre}">
-                <div class ="card-body">
-                    <p class ="card-title"> ${nombre}</p>
-                    <p class ="card-text">${descripcion}</p>
-                    <p class ="card-text">$ ${precio} pesos</p>
-                    <form id ="formaCantidad${id}">
-                        <label for ="cantidadProd${id}">Cantidad</label>
-                        <input type ="number" placeholder="0" id ="cantidadProd${id}" min="1" max = ${stock} >
-                        <button class = "btn" id ="botonAgrProd${id}">Agregar</button>      
+            <div class ="card-prod"  id ="card${producto.id}">
+                <img src ="./assests/img/${producto.id}.png" class ="card-img-prod" alt ="${producto.nombre}">
+                <div class ="card-body-prod">
+                    <p class ="card-title-prod"> ${producto.nombre}</p>
+                    <p class ="card-text-prod">${producto.descripcion}</p>
+                    <p class ="card-text-prod">$ ${producto.precio} pesos</p>
+                    <form id ="formaCantidad${producto.id}">
+                        <label for ="cantidadProd${producto.id}">Cantidad</label>
+                        <input type ="number" placeholder="0" id ="cantidadProd${producto.id}" min="1" max = ${producto.stock} >
+                        <button class = "btn-prod" id ="botonAgrProd${producto.id}">Agregar</button>      
                     </form>
                 </div>
             </div>`
         contenedorProductos.appendChild(prodCard)
-        const btnAgregar = document.getElementById(`botonAgrProd${id}`)
+        const btnAgregar = document.getElementById(`botonAgrProd${producto.id}`)
         btnAgregar.addEventListener("click", (el) => {
             el.preventDefault()
-             const cantidadAgregar = Number(document.getElementById(`cantidadProd${id}`).value)
+             const cantidadAgregar = Number(document.getElementById(`cantidadProd${producto.id}`).value)
             if (cantidadAgregar > 0) {
-                document.getElementById(`formaCantidad${id}`).reset()
-                agregarCarrito({id, nombre, precio, descripcion, categoria, stock, cantidad:cantidadAgregar})
+                document.getElementById(`formaCantidad${producto.id}`).reset()
+                agregarCarrito(producto.id, cantidadAgregar)
             }
             
         })
     })
+    carritoContar()
 }
 
-renderizarProductos()
+renderizarProductos(productos)
