@@ -76,21 +76,39 @@ const desplegarProductos = () => {
     finalizar.className = "btn-termino"
     finalizar.innerText = "Finalizar Compra"
     finalizar.addEventListener("click", () => {
-        Swal.fire({
-            title: "Compra Finalizada",
-            text: "Gracias por su compra, disfruta tus artículos y te esperamos pronto",
-            imageUrl: "./assests/img/bolsa_regalo.png",
-            icon: "success",
-            confirmButtonText: "Aceptar",
-            background: "#ffd3c7",
-        })
-        contenedorCarrito.innerHTML = " ";
-        localStorage.clear()
-        borrarCarrito()
+        finalizarCompra()
     })
     contenedorCarrito.appendChild(finalizar)
 }
 
+
+   // Finalizar compra
+finalizarCompra = () => {
+    // Capturar los datos de usuario de acuerdo a https://jsonplaceholder.typicode.com/users
+        Swal.fire({
+            title: "Ingresar",
+            html: `<input type ="email" id ="correo" class ="swal2-input" placeholder="email">`,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Enviar',
+            cancelButtonText: 'Salir',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const email = document.getElementById("correo").value
+                if (email != null && email != "") {
+                    // Funcion para conectarse a la API
+                    getUsuario(email)
+                } else {
+                    textoMsj = `Datos no validos, vuelva a intentar`;
+                    fondoMsj = "linear-gradient(to right, #ff5f6d, #ffc371)";
+                      msjCarrito(textoMsj, fondoMsj)
+                  
+                }  
+            }
+         })
+    }
+         
 
 
 // Borrar Carrito

@@ -28,7 +28,7 @@ header{
   width: 70px;
   text-align: right;
 }
-
+/* Contador de productos */
 #cantCarrito{
   background-color: brown;
   color: white;
@@ -80,6 +80,7 @@ h3{
   100%{opacity:1;}
 }
 
+/* Contenedor  */
 #contenedor{
   display: flex;
   flex-direction: row;
@@ -132,15 +133,7 @@ h3{
   margin-left: 690px;
 }
 
-/* Mensaje de despedida  */
-.mensajeFinal p{
-  color: #33272a;
-  font-size: 23px;
-  text-align: center;
-  
-}
-
-
+/* Contenedor Botones de filtrado de categorias */
 #botones-ctg{
   width: 15%;
   height: 350px;
@@ -151,7 +144,7 @@ h3{
   justify-content:space-between;
   gap: 0.8rem;
 }
-
+/* texto de ñps Botones de filtrado de categorias */
 #botones-ctg p{
   color: #33272a;
   font-size: 23px;
@@ -159,7 +152,7 @@ h3{
   text-align: center;
   
 }
-
+/* Botones de filtrado de categorias */
 .btn-category-prod{
   border: .5px solid lightcoral;
   padding: .75em 1.5em;
@@ -169,7 +162,7 @@ h3{
   cursor: pointer;
   font-size: 1.2em;
 }
-
+/* Accion de Botones de filtrado de categorias */
 .btn-category-prod:hover{
   background-color: #271c19  ;
   color:  #ffc0ad ;

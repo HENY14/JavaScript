@@ -3,7 +3,6 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let total = 0
 const cantidadCarrito = document.getElementById("cantCarrito");
 
-
 /* Constructor de productos */
 class Producto {
     constructor(id, nombre, precio, descripcion, categoria, stock) {
@@ -34,6 +33,7 @@ const delineadorOjos = new Producto("O03", "Delineador Ojos", 120, "Delineador d
 
 /*Array de productos*/
 const productos = [maquillaje, desmaquillante, hidratante, rubor, corrector, fijador, iluminador, brochas, labial, brilloLabial, delineador, humectante, sombras, mascaraPestañas, delineadorOjos];
+
 
 // Filtros
 const btnCategorias = document.querySelectorAll(".btn-category-prod")
@@ -85,10 +85,26 @@ const carritoContar = () => {
     }
 }
 
+//Actualizar Stock
+const actualizarStock = () => { 
+    carrito.forEach((producto) => {
+        cantidadActualizar = producto.cantidad 
+        console.log(cantidadActualizar)
+        let indexProd = productos.findIndex((el) => el.id === producto.id)
+        productos[indexProd].stock = productos[indexProd].stock - cantidadActualizar
+        console.log(productos)
+    })
+    renderizarProductos(productos)
+    localStorage.clear()
+    borrarCarrito() 
+}
+
+
 // local Storage
 const savelocal = () => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
+
 
 
 // Renderizar Productos
